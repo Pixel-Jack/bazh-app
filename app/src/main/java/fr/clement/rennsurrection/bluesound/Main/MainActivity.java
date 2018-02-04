@@ -1,7 +1,6 @@
 package fr.clement.rennsurrection.bluesound.Main;
 
 
-
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -80,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
 
     // MODIFICATION in order to install the pipe
     // Manage communications with the reception thread
-    final private Handler handlerReception = new Handler(){
+    final private Handler handlerReception = new Handler() {
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
             writeChat("\nServer : " + msg.obj);
         }
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
     private final static int ERROR_CHAT = -1;
     private final static String ACTION_STATE_CHAT_CHANGED = "fr.clement.rennsurrection.testbluetooth.ACTION_STATE_CHAT_CHANGED";
     private final static String EXTRA_STATE_CHAT = "fr.clement.rennsurrection.testbluetooth.EXTRA_STATE_CHAT";
-    public final static  int STATE_CHAT_CONNECTED = 0;
+    public final static int STATE_CHAT_CONNECTED = 0;
     public final static int STATE_CHAT_DISCONNECTED = 1;
     public final static int STATE_CHAT_DISCONNECTED_BASE = 2;
     public final static int STATE_CHAT_DISCONNECTED_CELL = 3;
@@ -160,22 +159,21 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
     private Boolean isBroadcastReceiverbluetoothProxyA2DPConnected_Registered = false;
 
 
-
     // ServiceListener which will know when the AD2P state changes
     private BluetoothProfile.ServiceListener serviceListener = new BluetoothProfile.ServiceListener() {
         @Override
         public void onServiceConnected(int profile, BluetoothProfile proxy) {
-            if(profile == BluetoothProfile.A2DP){
+            if (profile == BluetoothProfile.A2DP) {
                 final List<BluetoothDevice> btlist = proxy.getConnectedDevices();
 
-                if(btlist.size()  == 1){
+                if (btlist.size() == 1) {
                     final BluetoothDevice basePaired = btlist.get(0);
 
                     base = basePaired;
-                    String textStatePaire = "The phone is paired to " +  base.getName();
+                    String textStatePaire = "The phone is paired to " + base.getName();
                     textViewPair.setText(textStatePaire);
                     buttonConnection.setText(getResources().getText(R.string.texteButtonChat));
-                    if(!isConnecting){
+                    if (!isConnecting) {
                         buttonConnection.setVisibility(View.VISIBLE);
                     }
                     buttonConnection.setOnClickListener(new View.OnClickListener() {
@@ -184,20 +182,20 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                             connectionChat();
                         }
                     });
-                }else if(btlist.size() == 0 ){
+                } else if (btlist.size() == 0) {
                     // An AD2P connection is declared or there is no device connected
-                }else{
+                } else {
                     buttonConnection.setVisibility(View.VISIBLE);
                     buttonConnection.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             int nb_pair = btlist.size();
                             Intent intentChooseBase = new Intent(MainActivity.this, SelectBaseActivity.class);
-                            intentChooseBase.putExtra("fr.clement.rennsurrection.testbluetooth.NOMBER_SPEAKER",nb_pair);
+                            intentChooseBase.putExtra("fr.clement.rennsurrection.testbluetooth.NOMBER_SPEAKER", nb_pair);
                             int i = 0;
-                            for(BluetoothDevice device : btlist){
+                            for (BluetoothDevice device : btlist) {
                                 String nameExtra = "fr.clement.rennsurrection.testbluetooth.SPEAKER" + i;
-                                intentChooseBase.putExtra(nameExtra,device);
+                                intentChooseBase.putExtra(nameExtra, device);
                                 i++;
                             }
                             startActivityForResult(intentChooseBase, CHOOSE_BASE);
@@ -206,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                 }
             }
         }
+
         @Override
         public void onServiceDisconnected(int profile) {
             Toast toast = Toast.makeText(context, "Deconnection", Toast.LENGTH_SHORT);
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Leave confirmation");
-            builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning,getTheme()));
+            builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning, getTheme()));
 
             builder.setMessage("Do you want to leave ?");
 
@@ -230,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                 }
             };
             builder.setPositiveButton("Yes", reponseOuiListener);
-            builder.setNegativeButton("Cancel",null);
+            builder.setNegativeButton("Cancel", null);
             builder.show();
         }
         return super.onKeyDown(keyCode, event);
@@ -246,12 +245,12 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
         bluetoothProxyA2DPConnected = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if(intent.hasExtra(BluetoothA2dp.EXTRA_STATE)){
-                    int state = intent.getIntExtra(BluetoothA2dp.EXTRA_STATE,-1);
-                    if(state == BluetoothA2dp.STATE_CONNECTED){
+                if (intent.hasExtra(BluetoothA2dp.EXTRA_STATE)) {
+                    int state = intent.getIntExtra(BluetoothA2dp.EXTRA_STATE, -1);
+                    if (state == BluetoothA2dp.STATE_CONNECTED) {
                         BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                         base = bluetoothDevice;
-                        String texteEtatPairage = "Cellphone paired to " +  base.getName();
+                        String texteEtatPairage = "Cellphone paired to " + base.getName();
 
                         textViewPair.setText(texteEtatPairage);
                         buttonConnection.setText(getResources().getText(R.string.texteButtonChat));
@@ -264,50 +263,50 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                         finishActivity(CODE_BLUETOOTH_SETTINGS);
                         connectionChat();
                     }
-                } 
                 }
-               
-        };
-        textViewBluetoothState = (TextView)findViewById(R.id.textViewBluetoothState);
+            }
 
-        buttonSettingBluetooth = (ImageButton)findViewById(R.id.buttonSettingBluetooth);
+        };
+        textViewBluetoothState = (TextView) findViewById(R.id.textViewBluetoothState);
+
+        buttonSettingBluetooth = (ImageButton) findViewById(R.id.buttonSettingBluetooth);
         buttonSettingBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isBroadcastReceiverbluetoothProxyA2DPConnected_Registered){
+                if (isBroadcastReceiverbluetoothProxyA2DPConnected_Registered) {
                     unregisterReceiver(bluetoothProxyA2DPConnected);
                 }
                 Intent intentBluetooth = new Intent();
                 intentBluetooth.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
-                startActivityForResult(intentBluetooth,CODE_BLUETOOTH_SETTINGS);
+                startActivityForResult(intentBluetooth, CODE_BLUETOOTH_SETTINGS);
             }
         });
 
-        textViewPair = (TextView)findViewById(R.id.textViewPair);
+        textViewPair = (TextView) findViewById(R.id.textViewPair);
 
-        buttonConnection = (Button)findViewById(R.id.buttonConnection);
+        buttonConnection = (Button) findViewById(R.id.buttonConnection);
 
-        textViewChatState = (TextView)findViewById(R.id.textViewChatState);
+        textViewChatState = (TextView) findViewById(R.id.textViewChatState);
 
-        textViewChat = (TextView)findViewById(R.id.textViewChat);
+        textViewChat = (TextView) findViewById(R.id.textViewChat);
         textViewChat.setMovementMethod(new ScrollingMovementMethod());
 
-        layoutChat = (LinearLayout)findViewById(R.id.layoutChat);
+        layoutChat = (LinearLayout) findViewById(R.id.layoutChat);
 
-        layout_Connection_ON = (LinearLayout)findViewById(R.id.layout_Connection_ON);
+        layout_Connection_ON = (LinearLayout) findViewById(R.id.layout_Connection_ON);
 
-        relative_No_connection = (RelativeLayout)findViewById(R.id.relative_No_connexion);
-        relative_No_speaker = (RelativeLayout)findViewById(R.id.relative_No_speaker);
+        relative_No_connection = (RelativeLayout) findViewById(R.id.relative_No_connexion);
+        relative_No_speaker = (RelativeLayout) findViewById(R.id.relative_No_speaker);
 
-        textViewNbDongle = (TextView)findViewById(R.id.nb_Dongle);
+        textViewNbDongle = (TextView) findViewById(R.id.nb_Dongle);
 
-        buttonShowChat = (ImageButton)findViewById(R.id.button_CHAT_VISIBLE);
+        buttonShowChat = (ImageButton) findViewById(R.id.button_CHAT_VISIBLE);
         buttonShowChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(layoutChat.getVisibility() == View.VISIBLE){
+                if (layoutChat.getVisibility() == View.VISIBLE) {
                     layoutChat.setVisibility(View.GONE);
-                }else{
+                } else {
                     layoutChat.setVisibility(View.VISIBLE);
                 }
             }
@@ -320,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Reset : ");
-                builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning,getTheme()));
+                builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning, getTheme()));
 
                 builder.setMessage("Do you want to reset ?");
 
@@ -334,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                 };
 
                 builder.setPositiveButton("Yes", reponseOuiListener);
-                builder.setNegativeButton("No",null);
+                builder.setNegativeButton("No", null);
                 builder.show();
             }
         });
@@ -358,9 +357,9 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
             public void onReceive(Context c, Intent i) {
                 final String action = i.getAction();
                 Toast toast = null;
-                if(action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)){
-                    int state = i.getIntExtra(BluetoothAdapter.EXTRA_STATE,BluetoothAdapter.ERROR);
-                    switch(state) {
+                if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                    int state = i.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+                    switch (state) {
                         case BluetoothAdapter.STATE_OFF:
                             bluetoothStateChange();
                             break;
@@ -375,10 +374,9 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                             bluetoothStateChange();
                             break;
                     }
-                }
-                else if(action.equals(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)){
+                } else if (action.equals(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)) {
                     int state = i.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR);
-                    switch (state){
+                    switch (state) {
                         case BluetoothAdapter.STATE_CONNECTED:
                             bluetoothStateChange();
                             break;
@@ -397,16 +395,16 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
             }
         };
 
-        buttonSend = (Button)findViewById(R.id.buttonEnvoyer);
-        editMessage = (EditText)findViewById(R.id.editMessage);
+        buttonSend = (Button) findViewById(R.id.buttonEnvoyer);
+        editMessage = (EditText) findViewById(R.id.editMessage);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!editMessage.getText().equals("")){
+                if (!editMessage.getText().equals("")) {
                     String textChat = textViewChat.getText().toString();
                     String aEnvoyer = editMessage.getText().toString();
                     sendMessageConnectThread(aEnvoyer);
-                    textChat += "\nMe : "+ aEnvoyer;
+                    textChat += "\nMe : " + aEnvoyer;
                     textViewChat.setText(textChat);
                     editMessage.setText("");
 
@@ -421,10 +419,10 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
             public void onReceive(Context c, Intent i) {
                 final String action = i.getAction();
                 Toast toast;
-                if(action.equals(ACTION_STATE_CHAT_CHANGED)){
-                    if(i.hasExtra(EXTRA_STATE_CHAT)){
-                        int state = i.getIntExtra(EXTRA_STATE_CHAT,ERROR_CHAT);
-                        switch(state) {
+                if (action.equals(ACTION_STATE_CHAT_CHANGED)) {
+                    if (i.hasExtra(EXTRA_STATE_CHAT)) {
+                        int state = i.getIntExtra(EXTRA_STATE_CHAT, ERROR_CHAT);
+                        switch (state) {
                             case STATE_CHAT_CONNECTED:
                                 break;
                             case STATE_CHAT_DISCONNECTED:
@@ -437,7 +435,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                                 progressBar_connexion.setVisibility(View.GONE);
                                 // We show the button to allow a reconnection
                                 buttonConnection.setVisibility(View.VISIBLE);
-                                toast = Toast.makeText(c, "Connection to "+ base.getName() + " has failed !", Toast.LENGTH_SHORT);
+                                toast = Toast.makeText(c, "Connection to " + base.getName() + " has failed !", Toast.LENGTH_SHORT);
                                 toast.show();
                                 deconnection();
                                 notifyStateChatChangedForChild();
@@ -478,7 +476,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
 
                             case ERROR_CHAT:
                                 isConnecting = false;
-                                connectionWorking =false;
+                                connectionWorking = false;
                                 relative_No_connection.setVisibility(View.VISIBLE);
                                 relative_No_speaker.setVisibility(View.GONE);
                                 buttonConnection.setVisibility(View.VISIBLE);
@@ -486,15 +484,14 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                                 toast.show();
                                 break;
                         }
-                    }
-                    else{
+                    } else {
                         // There was a call to the broadcastStateReceiver without any Extra in the itent
                     }
 
                 }
             }
         };
-        
+
         filterFirstInfos = new IntentFilter();
         filterFirstInfos.addAction(ACTION_MODIFY_LIST_SPEAKER_MAIN);
         firstInformationReceiver = new BroadcastReceiver() {
@@ -502,7 +499,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
             public void onReceive(Context context, Intent intent) {
                 final String action = intent.getAction();
                 if (action.equals(ACTION_MODIFY_LIST_SPEAKER_MAIN)) {
-                    if(intent.hasExtra(EXTRA_DONGLE_NUMBER)){
+                    if (intent.hasExtra(EXTRA_DONGLE_NUMBER)) {
                         isConnecting = false;
                         connectionWorking = true;
                         textViewChatState.setText(R.string.liaisonBaseOK);
@@ -519,9 +516,9 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                         relative_No_speaker.setVisibility(View.VISIBLE);
                         buttonSettingBluetooth.setVisibility(View.GONE);
 
-                        Toast toast = Toast.makeText(context, "Connected to "+ base.getName() + " !", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(context, "Connected to " + base.getName() + " !", Toast.LENGTH_SHORT);
                         toast.show();
-                        if(isBroadcastReceiverbluetoothProxyA2DPConnected_Registered){
+                        if (isBroadcastReceiverbluetoothProxyA2DPConnected_Registered) {
                             unregisterReceiver(bluetoothProxyA2DPConnected);
                             isBroadcastReceiverbluetoothProxyA2DPConnected_Registered = false;
                         }
@@ -538,10 +535,10 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                             }
                         }
 
-                    }else if(intent.hasExtra(EXTRA_SPEAKER)){
+                    } else if (intent.hasExtra(EXTRA_SPEAKER)) {
                         Speaker enceinte_paired = intent.getParcelableExtra(EXTRA_SPEAKER);
                         addSpeakerConnected(enceinte_paired);
-                    }else if(intent.hasExtra(EXTRA_ADDRESS_TO_SUPPRESS)){
+                    } else if (intent.hasExtra(EXTRA_ADDRESS_TO_SUPPRESS)) {
                         String adrToSup = intent.getStringExtra(EXTRA_ADDRESS_TO_SUPPRESS);
                         removeSpeaker(adrToSup);
                     }
@@ -549,18 +546,18 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
             }
         };
 
-        listView_SpeakerConnected = (ListView)findViewById(R.id.listView_EnceintesCo);
+        listView_SpeakerConnected = (ListView) findViewById(R.id.listView_EnceintesCo);
         adapterListSpeakerConnected = new ConnectionAdapter(this, listeSpeakerConnected);
         adapterListSpeakerConnected.addListener(this);
         listView_SpeakerConnected.setAdapter(adapterListSpeakerConnected);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        stateView = (LinearLayout)findViewById(R.id.state);
-        if(bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP) != BluetoothAdapter.STATE_CONNECTED){
+        stateView = (LinearLayout) findViewById(R.id.state);
+        if (bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP) != BluetoothAdapter.STATE_CONNECTED) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            if(!isBroadcastReceiverbluetoothProxyA2DPConnected_Registered){
-                registerReceiver(bluetoothProxyA2DPConnected,filterProxyA2DPConnected);
+            if (!isBroadcastReceiverbluetoothProxyA2DPConnected_Registered) {
+                registerReceiver(bluetoothProxyA2DPConnected, filterProxyA2DPConnected);
                 isBroadcastReceiverbluetoothProxyA2DPConnected_Registered = true;
             }
             builder.setTitle("Not connected");
@@ -570,12 +567,12 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent intentBluetooth = new Intent();
                     intentBluetooth.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
-                    startActivityForResult(intentBluetooth,CODE_BLUETOOTH_SETTINGS);
+                    startActivityForResult(intentBluetooth, CODE_BLUETOOTH_SETTINGS);
                 }
             };
-            builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning,getTheme()));
+            builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning, getTheme()));
             builder.setPositiveButton("Bluetooth settings", reponseOuiListener);
-            builder.setNegativeButton("Cancel",null);
+            builder.setNegativeButton("Cancel", null);
             builder.show();
         }
     }
@@ -589,12 +586,12 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.showState:
-                if(item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     stateView.setVisibility(View.GONE);
-                }else{
+                } else {
                     item.setChecked(true);
                     stateView.setVisibility(View.VISIBLE);
                 }
@@ -603,7 +600,7 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Reset : ");
                 builder.setMessage("Do you want to reset ?");
-                builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning,getTheme()));
+                builder.setIcon(getResources().getDrawable(R.drawable.ic_action_warning, getTheme()));
                 DialogInterface.OnClickListener reponseOuiListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -612,65 +609,63 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                     }
                 };
                 builder.setPositiveButton("Yes", reponseOuiListener);
-                builder.setNegativeButton("No",null);
+                builder.setNegativeButton("No", null);
                 builder.show();
                 return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         registerReceiver(bluetoothStateReceiver, filter1);
         registerReceiver(broadcastReceiverStateChat, filterStateChat);
-        registerReceiver(firstInformationReceiver,filterFirstInfos);
+        registerReceiver(firstInformationReceiver, filterFirstInfos);
         bluetoothStateChange();
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
-        if(connectThread != null){
+        if (connectThread != null) {
             connectThread.cancel();
             connectThread = null;
         }
         unregisterReceiver(bluetoothStateReceiver);
         unregisterReceiver(broadcastReceiverStateChat);
         unregisterReceiver(firstInformationReceiver);
-        if(isBroadcastReceiverbluetoothProxyA2DPConnected_Registered){
+        if (isBroadcastReceiverbluetoothProxyA2DPConnected_Registered) {
             unregisterReceiver(bluetoothProxyA2DPConnected);
         }
     }
 
-    protected void bluetoothStateChange(){
+    protected void bluetoothStateChange() {
         int state = bluetoothAdapter.getState();
         int mode = bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP);
         String textBluetoothState = "";
-        if(state == BluetoothAdapter.STATE_ON){
+        if (state == BluetoothAdapter.STATE_ON) {
             textBluetoothState += "Bluetooth ON";
             buttonConnection.setVisibility(View.GONE);
             textViewPair.setVisibility(View.GONE);
-        }
-        else if(state == BluetoothAdapter.STATE_OFF){
+        } else if (state == BluetoothAdapter.STATE_OFF) {
             textBluetoothState += "Bluetooth OFF";
             buttonConnection.setVisibility(View.GONE);
             textViewPair.setVisibility(View.GONE);
             rAZ();
         }
-        if(mode == BluetoothAdapter.STATE_CONNECTED){
-            if(!connectionWorking){
+        if (mode == BluetoothAdapter.STATE_CONNECTED) {
+            if (!connectionWorking) {
                 textBluetoothState += "\nCellphone paired with an AD2P link";
                 buttonSettingBluetooth.setVisibility(View.GONE);
-                bluetoothAdapter.getProfileProxy(context, serviceListener, BluetoothProfile.A2DP );
+                bluetoothAdapter.getProfileProxy(context, serviceListener, BluetoothProfile.A2DP);
                 textViewPair.setVisibility(View.VISIBLE);
                 layout_Connection_ON.setVisibility(View.GONE);
                 buttonShowChat.setVisibility(View.GONE);
                 relative_No_connection.setVisibility(View.VISIBLE);
             }
-        }
-        else if(mode == BluetoothAdapter.STATE_DISCONNECTED){
+        } else if (mode == BluetoothAdapter.STATE_DISCONNECTED) {
             buttonSettingBluetooth.setVisibility(View.VISIBLE);
             textBluetoothState += "\nCellphone isn't paired with an AD2P link";
             textViewPair.setVisibility(View.GONE);
@@ -680,12 +675,12 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
     }
 
     @Override
-    protected  void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == CHOOSE_BASE){
-            if(resultCode == RESULT_OK){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CHOOSE_BASE) {
+            if (resultCode == RESULT_OK) {
                 final BluetoothDevice basePaired = data.getParcelableExtra(DEVICE);
                 base = basePaired;
-                String texteEtatPairage = "Cellphone paired to " +  basePaired.getName();
+                String texteEtatPairage = "Cellphone paired to " + basePaired.getName();
                 textViewPair.setText(texteEtatPairage);
                 buttonConnection.setText(getResources().getText(R.string.texteButtonChat));
                 buttonConnection.setOnClickListener(new View.OnClickListener() {
@@ -696,26 +691,22 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
                 });
                 connectionChat();
             }
-        }
-        else if(requestCode == CHOOSE_SPEAKER_ADD){
-            if(resultCode == RESULT_OK){
-                Speaker e =data.getParcelableExtra(AddActivity.speaker);
+        } else if (requestCode == CHOOSE_SPEAKER_ADD) {
+            if (resultCode == RESULT_OK) {
+                Speaker e = data.getParcelableExtra(AddActivity.speaker);
                 addSpeakerConnected(e);
+            } else if (resultCode == RESULT_CANCELED) {
             }
-            else if(resultCode == RESULT_CANCELED){
-            }
-        }
-        else if(requestCode == CHOOSE_TO_DISCO_SPEAKER) {
-            if(resultCode == RESULT_OK){
-            }
-            else if(resultCode == RESULT_CANCELED){
-                Speaker e =  data.getParcelableExtra(SPEAKER);
+        } else if (requestCode == CHOOSE_TO_DISCO_SPEAKER) {
+            if (resultCode == RESULT_OK) {
+            } else if (resultCode == RESULT_CANCELED) {
+                Speaker e = data.getParcelableExtra(SPEAKER);
                 changeAdapterListSpeakers(e);
             }
         }
     }
 
-    protected void rAZ(){
+    protected void rAZ() {
         endConnectThread();
         textViewBluetoothState.setText(R.string.textViewBluetoothStateZero);
         textViewPair.setText(R.string.textViewPairageZero);
@@ -728,23 +719,23 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
         buttonShowChat.setVisibility(View.GONE);
         buttonAddSpeaker.setVisibility(View.GONE);
         isBroadcastReceiverbluetoothProxyA2DPConnected_Registered = false;
-        isConnecting =false;
+        isConnecting = false;
         base = null;
         buttonSettingBluetooth.setVisibility(View.VISIBLE);
         nb_Dongle = 0;
         textViewNbDongle.setText(R.string.valeurNBDongleZero);
         listeSpeakerConnected.clear();
-        if(bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP) == BluetoothAdapter.STATE_CONNECTED){
+        if (bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP) == BluetoothAdapter.STATE_CONNECTED) {
             bluetoothAdapter.disable();
         }
     }
 
-    protected void endConnectThread(){
+    protected void endConnectThread() {
         /**
          * That will launch the end of the thread connection with the base
          * which will close emission thread and reception thread
          **/
-        if(connectThread != null){
+        if (connectThread != null) {
             connectThread.cancel();
             connectThread = null;
         }
@@ -752,19 +743,19 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
     }
 
 
-    protected void connectionChat(){
-        progressBar_connexion = (ProgressBar)findViewById(R.id.progressBarConnexion);
+    protected void connectionChat() {
+        progressBar_connexion = (ProgressBar) findViewById(R.id.progressBarConnexion);
         progressBar_connexion.setVisibility(View.VISIBLE);
         isConnecting = true;
         buttonConnection.setVisibility(View.GONE);
-        connectThread = new ConnectThread(bluetoothAdapter,base, handlerReception, this);
+        connectThread = new ConnectThread(bluetoothAdapter, base, handlerReception, this);
         connectThread.start();
     }
 
-    public static void sendMessageConnectThread(String message){
-        if(connectThread != null){
+    public static void sendMessageConnectThread(String message) {
+        if (connectThread != null) {
             connectThread.sendMessage(message);
-        }else{
+        } else {
             // Try to launch a message while the connection is closed
         }
     }
@@ -775,91 +766,90 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
         startActivityForResult(i, CHOOSE_TO_DISCO_SPEAKER);
     }
 
-    private void changeAdapterListSpeakers(){
+    private void changeAdapterListSpeakers() {
         adapterListSpeakerConnected.notifyDataSetChanged();
     }
 
-    private void changeAdapterListSpeakers(Speaker e){
+    private void changeAdapterListSpeakers(Speaker e) {
         int index = indexOfInListSpeakersConnected(e.getAddress());
         listeSpeakerConnected.set(index, e);
         changeAdapterListSpeakers();
     }
 
-    private int isMACPresent(Speaker e){
+    private int isMACPresent(Speaker e) {
         Speaker e_co;
-        for (int i = 0; i< listeSpeakerConnected.size() ; i++){
+        for (int i = 0; i < listeSpeakerConnected.size(); i++) {
             e_co = listeSpeakerConnected.get(i);
-            if(e_co.getAddress().equals(e.getAddress())){
+            if (e_co.getAddress().equals(e.getAddress())) {
                 return i;
             }
         }
         return -1;
     }
 
-    private void addSpeakerConnected(Speaker e){
+    private void addSpeakerConnected(Speaker e) {
         int index = isMACPresent(e);
-        if( index != -1){
+        if (index != -1) {
             Speaker speaker_to_modify = listeSpeakerConnected.get(index);
             speaker_to_modify.setName_speaker(e.getNom());
-            listeSpeakerConnected.set(index,speaker_to_modify);
-        }else{
+            listeSpeakerConnected.set(index, speaker_to_modify);
+        } else {
             listeSpeakerConnected.add(e);
             relative_No_speaker.setVisibility(View.GONE);
-            if(listeSpeakerConnected.size() == nb_Dongle){
+            if (listeSpeakerConnected.size() == nb_Dongle) {
                 buttonAddSpeaker.setVisibility(View.GONE);
             }
         }
         changeAdapterListSpeakers();
     }
 
-    private void removeSpeaker(Speaker e){
+    private void removeSpeaker(Speaker e) {
         Speaker speaker = null;
         int index = indexOfInListSpeakersConnected(e.getAddress());
-        if(index == -1){
+        if (index == -1) {
             // Try to suppress a device which isn't registered
-        }else{
+        } else {
             listeSpeakerConnected.remove(index);
             changeAdapterListSpeakers();
-            if(listeSpeakerConnected.size() == 0){
+            if (listeSpeakerConnected.size() == 0) {
                 relative_No_speaker.setVisibility(View.VISIBLE);
             }
-            if(nb_Dongle > 0){
+            if (nb_Dongle > 0) {
                 buttonAddSpeaker.setVisibility(View.VISIBLE);
             }
         }
     }
 
-    private void removeSpeaker(String adr){
+    private void removeSpeaker(String adr) {
         Speaker speaker = null;
         int index = indexOfInListSpeakersConnected(adr);
-        if(index == -1){
+        if (index == -1) {
             // Try to suppress a device which isn't registered
-        }else{
+        } else {
             listeSpeakerConnected.remove(index);
             changeAdapterListSpeakers();
-            if(listeSpeakerConnected.size() == 0){
+            if (listeSpeakerConnected.size() == 0) {
                 relative_No_speaker.setVisibility(View.VISIBLE);
             }
-            if(nb_Dongle > 0){
+            if (nb_Dongle > 0) {
                 buttonAddSpeaker.setVisibility(View.VISIBLE);
             }
         }
     }
 
-    private int indexOfInListSpeakersConnected(String adr){
+    private int indexOfInListSpeakersConnected(String adr) {
         /**
          * Return : index of the device in the list of connected device
          * Return : -1 if not present and -2 if the list of connected device if null
          * Search based on the unique MAC address
          */
         Speaker speaker_i;
-        if(listeSpeakerConnected == null){
+        if (listeSpeakerConnected == null) {
             return -2;
-        }
-        else{
-            for(int i = 0; i < listeSpeakerConnected.size() ; i++){
+        } else {
+            for (int i = 0; i < listeSpeakerConnected.size(); i++) {
                 speaker_i = listeSpeakerConnected.get(i);
-                if(speaker_i.getAddress().equals(adr)) {
+                if (speaker_i.getAddress().equals(adr)) {
                     return i;
                 }
             }
@@ -867,57 +857,57 @@ public class MainActivity extends AppCompatActivity implements CoAdapterListener
         }
     }
 
-    private void deconnection(){
+    private void deconnection() {
         endConnectThread();
         listeSpeakerConnected.clear();
         changeAdapterListSpeakers();
         textViewChat.setText("");
     }
 
-    private void notifyStateChatChangedForChild(){
+    private void notifyStateChatChangedForChild() {
         Intent chatDisconnected = new Intent(NOTIFY_STATE_CHAT_CHANGED_FOR_CHILD);
         this.sendBroadcast(chatDisconnected);
     }
 
 
-// Public methods :
-    public static void writeChat(String message){
+    // Public methods :
+    public static void writeChat(String message) {
         String chat = textViewChat.getText().toString();
         chat += message;
         textViewChat.setText(chat);
     }
 
-    public static void deconnectionSpeaker(Speaker speaker){
+    public static void deconnectionSpeaker(Speaker speaker) {
         String order = SPEAKER_TO_DISCONNECT + "," + speaker.getAddress();
         sendMessageConnectThread(order);
     }
 
-    public static void getListSpeaker(){
+    public static void getListSpeaker() {
         String order = Integer.toString(LIST_SPEAKER);
         sendMessageConnectThread(order);
         writeChat("\nCellphone : " + order);
     }
 
-    public static void stopSearchingSpeaker(){
+    public static void stopSearchingSpeaker() {
         String order = Integer.toString(STOP_LISTE_SPEAKER);
         sendMessageConnectThread(order);
         writeChat("\nCellphone : " + order);
     }
 
-    public static void pairageEnceinte(Speaker speaker){
-        String order = PAIR + ","+ speaker.getAddress();
+    public static void pairageEnceinte(Speaker speaker) {
+        String order = PAIR + "," + speaker.getAddress();
         connectThread.sendMessage(order);
         writeChat("\nCellphone : " + order);
     }
 
-    public static void cancelPair(){
+    public static void cancelPair() {
         String order = Integer.toString(PAIR_FAIL);
         sendMessageConnectThread(order);
         writeChat("\nCellphone : " + order);
     }
 
-    public static void volumeSpeaker(Speaker speaker, String valeur){
-        String order = VOLUME + ","  + speaker.getAddress() + "," + valeur;
+    public static void volumeSpeaker(Speaker speaker, String valeur) {
+        String order = VOLUME + "," + speaker.getAddress() + "," + valeur;
         sendMessageConnectThread(order);
         writeChat("\nCellphone : " + order);
     }
