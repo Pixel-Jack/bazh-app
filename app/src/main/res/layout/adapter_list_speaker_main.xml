@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="?android:attr/listPreferredItemHeight"
+android:padding="6dp"
+android:id="@+id/adapter_main"
+    >
+
+    <ImageView
+        android:id="@+id/adapter_main_enceinte_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dp"
+        app:srcCompat="@drawable/ic_enceinte"
+        android:tint="@color/black"/>
+
+    <TextView
+        android:id="@+id/adapter_main_speaker_address"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_alignParentBottom="true"
+        android:maxLines="1"
+        android:text="Adresse"
+        android:textSize="12sp"
+        android:layout_toRightOf="@+id/adapter_main_enceinte_icon"
+        android:layout_toEndOf="@+id/adapter_main_enceinte_icon" />
+
+    <TextView
+        android:id="@+id/adapter_main_speaker_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/adapter_main_speaker_address"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/adapter_main_enceinte_icon"
+        android:gravity="center_vertical"
+        android:text="Nom"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/adapter_main_speaker_Vol"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_alignParentBottom="true"
+        android:maxLines="1"
+        android:text="Adresse"
+        android:textSize="12sp"
+        android:layout_toLeftOf="@+id/adapter_speaker_main_button_settings"/>
+
+    <ImageButton
+        android:id="@+id/adapter_enceinte_main_button_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        app:srcCompat="@drawable/ic_settings_black_24px"
+        android:tint="@color/indigo" />
+
+</RelativeLayout>

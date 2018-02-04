@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relative_No_speaker"
+            android:elevation="0dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_speaker_black"
+                android:id="@+id/imageView5"
+                android:adjustViewBounds="true"
+                android:elevation="4dp"
+                android:layout_centerInParent="true"
+                android:paddingTop="40dp" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_triangle"
+                android:layout_margin="10dp"
+                android:id="@+id/imageView"
+                android:elevation="0dp"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:text="@string/noEnceinte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_below="@id/imageView"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:maxWidth="200dp"
+                android:gravity="center_horizontal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relative_No_connexion"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_device_hub_black"
+                android:id="@+id/imageView6"
+                android:adjustViewBounds="true"
+                android:elevation="4dp"
+                android:layout_centerInParent="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp" />
+
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_width="150dp"
+                android:id="@+id/imageView8"
+                app:srcCompat="@drawable/ic_cercle"
+                android:elevation="0dp"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
+                />
+
+            <TextView
+                android:text="@string/noConnexion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7"
+                android:layout_below="@id/imageView8"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:maxWidth="200dp"
+                android:gravity="center_horizontal" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_ADD_SPEAKER"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_add_black_24px"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_gravity="bottom|right"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white"
+            app:logo="@mipmap/ic_launcher"
+            style="@style/Base.Widget.AppCompat.Toolbar"
+            app:titleMarginStart="20dp"
+            app:contentInsetStart="10dp" />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/layoutCorps"
+            android:alwaysDrawnWithCache="false">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/state"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2"
+                        android:text="@string/etatConnexion"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        style="@style/Titre"
+                        android:layout_alignParentLeft="true" />
+
+                    <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+                        android:text="@string/textViewBluetoothStateZero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewBluetoothState"
+                        android:layout_alignParentTop="false"
+                        style="@style/sousTitrePrincipal"
+                        android:layout_below="@id/textView2" />
+
+                    <ImageButton
+                        android:id="@+id/buttonRaZ"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/textView2"
+                        style="?android:attr/imageButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="10dp"
+                        android:layout_marginRight="10dp"
+                        android:elevation="8dp"
+                        android:tint="@color/indigo_light"
+                        android:src="@drawable/ic_restore"
+
+                        />
+
+                    <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+                        android:text="@string/textViewPairageZero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewBluetoothState"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/textViewPair"
+                        style="@style/sousTitrePrincipal"/>
+
+                    <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+                        android:text="@string/textViewChatStateZero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewPair"
+                        android:id="@+id/textViewChatState"
+                        style="@style/sousTitrePrincipal"/>
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:elevation="8dp"
+                        android:id="@+id/button_CHAT_VISIBLE"
+                        android:tint="@color/indigo_light"
+                        android:src="@drawable/ic_chat_black_24px"
+                        style="?android:attr/imageButtonStyle"
+                        android:layout_gravity="right"
+                        android:gravity="bottom|center_vertical|center_horizontal"
+                        android:layout_below="@+id/buttonRaZ"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="10dp" />
+
+                    <TextView
+                        android:text="@string/nbDongle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6"
+                        android:layout_below="@+id/textViewChatState"
+                        style="@style/sousTitrePrincipal"/>
+
+                    <TextView
+                        android:text="@string/valeurNBDongleZero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nb_Dongle"
+                        style="@style/sousTitrePrincipal"
+                        android:layout_below="@+id/textViewChatState"
+                        android:layout_toLeftOf="@+id/buttonRaZ" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/barre"
+                    android:id="@+id/imageView4"
+                    android:contentDescription="Problème"
+                    android:adjustViewBounds="true" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/buttonSettingBluetooth"
+                style="@android:style/Widget.Material.Light.ImageButton"
+                android:padding="10dp"
+                android:elevation="8dp"
+                android:tint="@color/indigo_light"
+                android:layout_gravity="center"
+
+                android:src="@drawable/ic_bluetooth_settings"
+                android:layout_width="100dp"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="10dp"
+                android:cropToPadding="false"
+                android:duplicateParentState="false"
+                android:fitsSystemWindows="false"
+                android:filterTouchesWhenObscured="false"
+                android:focusableInTouchMode="false"
+                android:forceHasOverlappingRendering="false"
+                android:scaleType="centerInside"
+                android:layout_height="50dp" />
+
+            <Button
+                android:text="@string/buttonChatZero"
+                android:id="@+id/buttonConnection"
+                android:layout_marginTop="12dp"
+                style="@style/MyButton"/>
+
+            <ProgressBar
+                android:id="@+id/progressBarConnexion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/layout_Connection_ON">
+
+
+
+                <ListView
+                    android:id="@+id/listView_EnceintesCo"
+                    android:paddingTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:paddingBottom="20dp">
+
+                </ListView>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/layoutChat"
+                    android:visibility="gone"
+                    android:background="#BBB"
+                    android:elevation="10dp"
+                    style="@style/Base.TextAppearance.AppCompat.Button">
+
+                    <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+                        android:text="Chat : "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewChatState"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/textView5"
+                        android:layout_gravity="center_vertical|center_horizontal|center"
+                        android:gravity="center"
+                        style="@style/sousTitre"/>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="vertical"
+                        android:fillViewport="true"
+                        android:layout_weight="2">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:id="@+id/textViewChat"
+                            android:layout_gravity="center_horizontal"
+                            android:visibility="visible"
+                            android:scrollbars="vertical" />
+
+                    </ScrollView>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:ems="10"
+                            android:id="@+id/editMessage"
+                            android:layout_weight="1"
+                            android:hint="à envoyer" />
+
+                        <Button
+                            android:text="Envoyer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/buttonEnvoyer"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

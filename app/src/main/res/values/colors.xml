@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Nuancier -->
+    <color name="bleuBase">#2658B2</color>
+    <color name="gris">#dddddd</color>
+    <color name="bleuClair">#508EFF</color>
+    <color name="vertClair">#9CCC2B</color>
+    <color name="vertFonce">#7DA12A</color>
+
+    <color name="indigo">#3d5afe</color>
+    <color name="indigo_light">#8187ff</color>
+    <color name="indigo_dark">#0031ca</color>
+    <color name="green">#4caf50</color>
+    <color name="green_light">#80e27e</color>
+    <color name="green_dark">#087f23</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+</resources>

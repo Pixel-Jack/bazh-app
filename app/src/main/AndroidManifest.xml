@@ -1,0 +1,38 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="fr.clement.rennsurrection.bluesound">
+
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:roundIcon="@mipmap/ic_launcher"
+
+        tools:replace="icon"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/bluesoundTheme">
+        <activity android:name=".Welcome.WelcomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".Main.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".SelectBase.SelectBaseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddSpeaker.AddActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Main.MainActivity"/>
+        <activity android:name=".SpeakerSettings.SpeakerActivity"
+            android:screenOrientation="portrait"/>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">BlueSound</string>
+    <string name="title_activity_enceinte">Device</string>
+    <string name="TAG">INFOS</string>
+    <string name="textViewBluetoothStateConnecte">Bluetooth activated</string>
+    <string name="textViewBluetoothStateDeconnecte">Bluetooth desactivated</string>
+    <string name="textViewBluetoothStateZero">Bluetooth desactivated</string>
+    <string name="buttonConnexionBaseZero">Connection to the base</string>
+    <string name="textViewPairageZero">Cellphone and the base aren\'t paired !</string>
+    <string name="buttonChatZero">Select the base</string>
+    <string name="textViewChatStateZero">Communication with the base isn\'t established !</string>
+
+
+    <!-- Layout acceuil-->
+    <string name="presentation">Projet realised by :\n\tAnneix Alexis - \tFlorent Laure\n\tPonthieu Clément - \tCarlier Benoît</string>
+
+    <!-- Layout principal-->
+    <string name="AjouterEnceinte">Add a device</string>
+    <string name="etatConnexion">Connection state</string>
+    <string name="rAZ">RàZ</string>
+    <string name="texteButtonChat">Connection</string>
+    <string name="noEnceinte">There is no device connected to the base.</string>
+    <string name="noConnexion">Cellphone not paired to the base.</string>
+    <string name="nbDongle"> Max device connected : </string>
+    <string name="valeurNBDongleZero">...</string>
+    <string name="liaisonBaseOK">Base connected</string>
+
+    <!-- Layout Choix de la base -->
+    <string name="choixBase">Select the base</string>
+    <string name="peripheriques">Devices :</string>
+    <string name="selectionner">Select</string>
+
+    <!-- Layout Ajouter Speaker -->
+    <string name="EnceintesDetectees">Devices detected :</string>
+    <string name="AttenteConfirmation">Waiting for confirmation...</string>
+    <string name="arreterRecherche">Stop</string>
+    <string name="lancerRecherche">Start</string>
+    <string name="connectionlost">Connection lost</string>
+    <string name="backtoHome">Connection with the base has been lost !\nLet\'s get back to Home !</string>
+
+    <!-- Layout choix de la base -->
+    <string name="selectionBase">Select the base :</string>
+
+
+    <!-- Layout Param speaker-->
+    <string name="paramEnceinte">Settings</string>
+    <string name="enceinte">Device</string>
+    <string name="deco_echouee">Deconnection failed</string>
+
+    <!-- Param speaker-->
+    <string name="deconnecter">Deconnection</string>
+
+    <!-- Menu Main-->
+    <string name="showState">Show state</string>
+    <string name="restaure">Restore</string>
+    <string name="help">help</string>
+
+</resources>

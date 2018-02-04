@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/AjouterEnceinte"
+            app:titleTextColor="@color/white"
+            style="@style/Base.Widget.AppCompat.Toolbar"  />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/layoutCorps">
+
+
+            <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/enceinteDispo"
+                android:text="@string/EnceintesDetectees"
+                style="@style/sousTitrePrincipal"
+                android:layout_margin="@dimen/marge_cotes"
+                android:layout_weight="0" />
+
+            <ListView
+                android:id="@+id/ListView01"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            </ListView>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0">
+
+                <Button
+                    android:text="@string/arreterRecherche"
+                    android:id="@+id/buttonRecherche"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    style="@style/MyButton"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

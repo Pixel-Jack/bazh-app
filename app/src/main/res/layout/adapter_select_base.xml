@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dp"
+    android:id="@+id/relative_base"
+    >
+
+    <ImageView
+        android:id="@+id/adapter_base_enceinte_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dp"
+        app:srcCompat="@drawable/ic_device_other" />
+
+    <TextView
+        android:id="@+id/adapter_base_enceinte_addresse"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_alignParentBottom="true"
+        android:maxLines="1"
+        android:text="Nom"
+        android:textSize="12sp"
+        android:layout_toRightOf="@+id/adapter_base_enceinte_icon"
+        android:layout_toEndOf="@+id/adapter_base_enceinte_icon" />
+
+    <TextView
+        android:id="@+id/adapter_base_enceinte_nom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/adapter_base_enceinte_addresse"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/adapter_base_enceinte_icon"
+        android:gravity="center_vertical"
+        android:text="Example application"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <ImageButton
+        android:id="@+id/adapter_enceinte_base_button_ajouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.Button"
+        app:srcCompat="@drawable/ic_done_black_24px"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

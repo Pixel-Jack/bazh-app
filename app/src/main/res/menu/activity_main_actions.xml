@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    //
+    <item
+        android:id="@+id/showState"
+        android:title="@string/showState"
+        android:checkable="true"
+        android:checked="false"
+        />
+    <item
+        android:id="@+id/setToZero"
+        android:title="@string/restaure"
+        android:icon="@drawable/ic_restore"/>
+    <item
+        android:id="@+id/help"
+        android:title="@string/help"
+        android:enabled="false"/>
+</menu>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_enceinte"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/paramEnceinte"
+        app:titleTextColor="@color/white"
+        style="@style/Base.Widget.AppCompat.Toolbar"  />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/layoutCorps"
+        android:layout_below="@+id/toolbar2"
+        android:layout_centerHorizontal="true">
+
+        <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/enceinte"
+            android:paddingBottom="10dp"
+            android:text="@string/enceinte"
+            android:layout_alignParentTop="true"
+            style="@style/Titre"
+            android:gravity="center_horizontal" />
+
+        <fr.clement.rennsurrection.bluesound.Objects.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/volume"
+            android:text="Volume"
+            android:layout_below="@id/enceinte"
+            android:layout_marginTop="25dp"
+            style="@style/sousTitrePrincipal"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/volume">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_volume"
+                android:layout_centerInParent="true"
+                style="@android:style/TextAppearance.Material.Widget.TextView"
+                android:textSize="35sp"
+                android:textColor="@color/indigo_light" />
+
+            <com.triggertrap.seekarc.SeekArc
+                android:id="@+id/seekArc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="30dp"
+                app:rotation="180"
+                app:startAngle="30"
+                app:sweepAngle="300"
+                app:touchInside="true"
+                app:progressColor="@color/indigo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/buttonDeconnecter"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/titre"
+            android:layout_width="wrap_content"
+            style="@style/MyButton"
+            android:textAllCaps="true"
+            android:elevation="8dp"
+            android:text="@string/deconnecter"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
